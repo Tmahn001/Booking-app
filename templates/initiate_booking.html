@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+
+    label{color:#000000;
+    font-weight:600;
+    }
+    .select, .datepickerinput, .numberinput{
+    border-color:white;
+    border-radius:1em !important;
+    box-shadow: 1px 4px #00000040;
+    }
+
+     
+
+</style>
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="container-fluid pt-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body" style="background-color:#D9D9D975;">
+                        {{booking_form|crispy}}
+                        <p class="text-center">
+        <input class="btn btn-primary" type="submit" value="submit" style="width:50%; background-color:#016726; border-color:#016726; border-radius:1em;">
+
+    </p>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</form>
+
+<script>
+document.getElementById('id_amount').onkeydown = function (e) {
+        e.preventDefault();
+    };
+    document.getElementById('id_amount').oncut = function (e) {
+        e.preventDefault();
+    };
+    document.getElementById('id_amount').onpaste = function (e) {
+        e.preventDefault();
+    };
+    document.getElementById('id_amount').onclick = function (e) {
+        e.preventDefault();
+    };
+</script>
+
+{% endblock content %}

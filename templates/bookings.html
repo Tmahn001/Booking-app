@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+            body{font-family:'Poppins';
+    }
+
+
+</style>
+</head>
+<header>
+    <div class="container-fluid pt-3">
+    <div class="row">
+        <div class="col-7">
+            <p>Hello {{ user }}</p>
+
+
+
+        </div>
+
+        <div class="col-6 pt-4">
+            <div class="text-center">
+                <p style="border-bottom:2px solid #001840;">Active Bookings</p>
+
+            </div>
+
+        </div>
+        <div class="col-6 pt-4">
+            <div class="text-center">
+                <p>History</p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</header>
+<body class="px-2">
+
+
+<div class="container-fluid  px-2" style="background-color:#D9D9D975;">
+    <div class="row">
+        <div class="col-12 pt-3">
+            {% for a in all %}
+            <div class="container-fluid card px-5 pt-2" style="border-radius:.7em; height:5em; background-color:white;">
+                <div class="row">
+                    <div class="col-7">
+                       <p><i class="fa-solid fa-desktop"></i>  Workspace {{a.slot.index}}</p>
+                    </div>
+                    <div class="col-5">
+                        <p class="text-right" style="font-size:.8em;">{{a.select_date}}</p>
+                        <p class="text-right" style="font-size:.7em;">Daily</p>
+
+                    </div>
+
+
+
+
+
+                </div>
+
+
+            </div>
+            <br>
+            {% endfor %}
+
+
+            <div class="container-fluid card px-5 pt-2" style="border-radius:.7em; height:3em; background-color:white;">
+                <div class="row">
+                    <div class="col-12">
+                       <p class="text-center"><a href="{% url 'home' %}"><i class="fa-solid fa-plus fa-2x"></i></a></p>
+
+
+                    </div>
+
+
+
+
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="container-fluid   pt-2" style="border-radius:; height:3em; background-color:#D9D9D975;">
+                <div class="row">
+                    <div class="col-12">
+
+
+
+                    </div>
+
+
+
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</body>
+{% endblock content %}

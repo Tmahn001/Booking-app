@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  .container .row {
+  height: 70vh;
+}
+</style>
+
+<div class="container pt-6">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-10">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Make Payment for: NGN {{ top_up.amount }}</h5>
+
+
+
+                       <script src="https://js.paystack.co/v1/inline.js"></script>
+                       <br>
+                    <button class="btn btn-large btn-success" onclick="payWithPayStack()" id="django-paystack-button" style="width:100%; background-color:#001840;
+                    ">Make Payment</button>
+                        
+                    </div>
+                    
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+<script>
+    function payWithPayStack(){
+    let currency = "NGN";
+    let plan = "";
+    let ref = "{{ top_up.ref }}"
+    let obj = {
+    key: "{{ paystack_public_key }}",
+    email: '{{ top_up.user }}',
+    amount: '{{ top_up.amount_value }}',
+    ref: ref,
+    callback: function(response){
+    window.location.href = "{% url 'verify-top-up' top_up.ref %}";
+    }
+    }
+
+    if (Boolean(currency)){
+        obj.currency = currency.toUpperCase()
+
+    }
+    if (Boolean(plan)){
+        obj.plan = plan;
+
+    }
+    var handler = PaystackPop.setup(obj);
+    handler.openIframe();
+
+    }
+</script>
+{% endblock content %}
